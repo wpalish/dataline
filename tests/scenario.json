@@ -1,0 +1,38 @@
+[
+  {
+    "collection": "contacts",
+    "as": "c",
+    "data": {
+      "name": "Учебная компания",
+      "email": "team@example.org",
+      "company": "Вымышленный центр",
+      "status": "active"
+    }
+  },
+  {
+    "collection": "contacts",
+    "error": "дубликаты",
+    "data": {
+      "name": "Повтор",
+      "email": "team@example.org",
+      "company": "Ещё центр",
+      "status": "active"
+    }
+  },
+  {
+    "collection": "actions",
+    "as": "a",
+    "data": {
+      "contact": "$c",
+      "task": "Показать синтетический образец",
+      "due": "2026-10-25",
+      "status": "open"
+    }
+  },
+  {
+    "collection": "contacts",
+    "id": "$c",
+    "operation": "archive",
+    "error": "Сначала"
+  }
+]
