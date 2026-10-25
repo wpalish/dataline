@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-25",
+  "product": "dataline",
+  "baseline_commit": "b898d18",
+  "defect": "Completed action edit selector omitted its saved archived contact, leaving a required value empty",
+  "before_fix": {
+    "ui": {
+      "baseline": "b898d18",
+      "observed_at": "2026-10-25T00:02:49.029Z",
+      "selector": {
+        "missing": true,
+        "options": [
+          "Выберите значение",
+          "SYNTHETIC live contact"
+        ],
+        "value": ""
+      },
+      "defect": "Saved completed action loses its selected archived contact in required edit selector"
+    },
+    "baseline_controls_passed": 2,
+    "controls_note": "Server already blocked new/reopened open actions and preserved completed history/restart/restore. These controls were passing before the UI fix, not newly fixed server defects."
+  },
+  "policy": "Keep the current saved archived contact in the edit selector with Archive label. Do not offer other archived contacts or any archived contact in a new form. Existing server rules remain unchanged.",
+  "tests": {
+    "passed": 6,
+    "failed": 0,
+    "runtime": "v24.19.0",
+    "log": "docs/test-output.txt",
+    "lifecycle": "tests/history.test.js",
+    "coverage": [
+      "completed history edits retain contact/done status;active new action remains valid",
+      "new/reopened open action against archived contact rejected with full state/revision/audit unchanged",
+      "real file close/reopen and empty-database restore retain history and reopening guard",
+      "original duplicate-email, anonymous/CSRF/Origin/cookie and optimistic conflict checks remain passing"
+    ]
+  },
+  "browser": {
+    "data": "synthetic only, localhost8832",
+    "selector_before": {
+      "missing": true,
+      "options": [
+        "Выберите значение",
+        "SYNTHETIC live contact"
+      ],
+      "value": ""
+    },
+    "selectors_after": {
+      "existing": {
+        "missing": false,
+        "options": [
+          "Выберите значение",
+          "SYNTHETIC archived contact · Архив",
+          "SYNTHETIC live contact"
+        ],
+        "selected": "SYNTHETIC archived contact · Архив",
+        "value": "bf24241a-f806-4c84-99bc-dd0ae339d330"
+      },
+      "new_action": {
+        "options": [
+          "Выберите значение",
+          "SYNTHETIC live contact"
+        ],
+        "value": ""
+      }
+    },
+    "existing_api_guards": {
+      "existing_server_controls_not_new_fix": true,
+      "authenticated_http": true,
+      "all4_rejections_preserved_entire_state_and_audit": true,
+      "revision": 8,
+      "audit_events": 8,
+      "results": [
+        {
+          "operation": "new_open",
+          "status": 400,
+          "error": "Сначала завершите открытые действия контакта."
+        },
+        {
+          "operation": "new_open",
+          "status": 400,
+          "error": "Сначала завершите открытые действия контакта."
+        },
+        {
+          "operation": "reopen_history",
+          "status": 400,
+          "error": "Сначала завершите открытые действия контакта."
+        },
+        {
+          "operation": "retarget_open",
+          "status": 400,
+          "error": "Сначала завершите открытые действия контакта."
+        }
+      ]
+    },
+    "reopen_rejection": {
+      "all_data_unchanged": true,
+      "original_done_status_retained": true,
+      "revision": 8,
+      "audit_events": 8
+    },
+    "saved_and_reloaded": {
+      "original_contact_and_done_status_retained": true,
+      "completed_task_edit_saved": true,
+      "unrelated_archived_contact_not_offered": true,
+      "new_action_only_active_contacts": true,
+      "new_valid_open_action_saved": true,
+      "all_contacts_and_prior_open_action_unchanged": true,
+      "revision": 10,
+      "audit_events": 10
+    },
+    "screens": [
+      "docs/before-missing-contact.jpg",
+      "docs/selected-archive-restored.jpg",
+      "docs/reopen-rejected.jpg",
+      "docs/completed-task-saved.jpg",
+      "docs/history-and-live-task.jpg"
+    ]
+  },
+  "runtime": {
+    "main_pid": 79640,
+    "restarted": false,
+    "evidence": "work/program/runtime-checks/dataline-history-20261025",
+    "reason": "Only static app.js option filtering/label changed;existing server reads static bytes per request. Served app.js hash equals local new file.18 saved workspace states unchanged."
+  },
+  "limits": [
+    "Done is a manual user status, not proof an external task was performed",
+    "DataLine remains a shared workspace,not email service/CRM integration/client-isolated SaaS",
+    "Domain rules/schema unchanged;only existing reference-option retention/Archive label changed",
+    "No fresh whole-interface/security audit or customer acceptance"
+  ]
+}

@@ -4,7 +4,7 @@
   "runtime": "Node 24.19.0",
   "tests": {
     "slug": "dataline",
-    "tests": 4,
+    "tests": 6,
     "pass": true,
     "runtime": "v24.19.0"
   },
@@ -36,5 +36,10 @@
     "slug": "dataline",
     "query": "Учебная компания",
     "result": "visible_label_and_no_results_recovery_passed"
+  },
+  "followup": {
+    "date": "2026-10-25",
+    "change": "Retain selected archived contact when editing completed action;existing server controls verified unchanged",
+    "evidence": "docs/history-verification.json"
   }
 }

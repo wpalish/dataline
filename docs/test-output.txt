@@ -1,34 +1,46 @@
 TAP version 13
-# Subtest: DataLine: complete original workflow, calculation and rejected invalid transition
-ok 1 - DataLine: complete original workflow, calculation and rejected invalid transition
+# Subtest: completed history with archived contact remains editable while new/reopened open actions stay rejected
+ok 1 - completed history with archived contact remains editable while new/reopened open actions stay rejected
   ---
-  duration_ms: 2.228958
+  duration_ms: 3.581916
+  type: 'test'
+  ...
+# Subtest: real file restart and validated restore preserve completed action/contact history and reopening guard
+ok 2 - real file restart and validated restore preserve completed action/contact history and reopening guard
+  ---
+  duration_ms: 4.607084
+  type: 'test'
+  ...
+# Subtest: DataLine: complete original workflow, calculation and rejected invalid transition
+ok 3 - DataLine: complete original workflow, calculation and rejected invalid transition
+  ---
+  duration_ms: 2.233541
   type: 'test'
   ...
 # Subtest: real file restart, optimistic conflict and validated restore into an empty database
-ok 2 - real file restart, optimistic conflict and validated restore into an empty database
+ok 4 - real file restart, optimistic conflict and validated restore into an empty database
   ---
-  duration_ms: 2.99875
+  duration_ms: 3.1655
   type: 'test'
   ...
 # Subtest: HTTP prevents anonymous reads and cross-origin/CSRF writes while authenticated workflow saves
-ok 3 - HTTP prevents anonymous reads and cross-origin/CSRF writes while authenticated workflow saves
+ok 5 - HTTP prevents anonymous reads and cross-origin/CSRF writes while authenticated workflow saves
   ---
-  duration_ms: 72.510334
+  duration_ms: 72.857125
   type: 'test'
   ...
 # Subtest: two products on one host use isolated session cookies and preserve both logins
-ok 4 - two products on one host use isolated session cookies and preserve both logins
+ok 6 - two products on one host use isolated session cookies and preserve both logins
   ---
-  duration_ms: 95.872875
+  duration_ms: 86.89325
   type: 'test'
   ...
-1..4
-# tests 4
+1..6
+# tests 6
 # suites 0
-# pass 4
+# pass 6
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 218.753333
+# duration_ms 209.278
